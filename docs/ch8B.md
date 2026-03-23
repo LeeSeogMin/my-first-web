@@ -79,10 +79,39 @@ Supabase를 Next.js 프로젝트에 연동하고, 데이터를 읽어 화면에 
 
 **목표**: Supabase 프로젝트를 생성하고 API 키를 `.env.local`에 설정한다.
 
+**방법 A: 대시보드** (수동)
+
 ① https://supabase.com 에서 새 프로젝트를 생성한다
 ② 프로젝트 이름, 데이터베이스 비밀번호, 리전(Northeast Asia — ap-northeast-1 권장)을 설정한다
 ③ Settings → API에서 `Project URL`과 `anon public` 키를 복사한다
 ④ `.env.local.example`을 `.env.local`로 복사하고 값을 채운다:
+
+**방법 B: Supabase CLI** (자동화 — 상세 설정은 **부록 D** 참고)
+
+```bash
+# Access Token 발급: https://supabase.com/dashboard/account/tokens
+# 토큰은 sbp_ 로 시작한다.
+
+# 조직 ID 확인
+npx supabase orgs list
+
+# 프로젝트 생성
+npx supabase projects create my-blog \
+  --org-id "조직ID" \
+  --db-password "DB비밀번호" \
+  --region ap-northeast-1
+
+# API 키 확인
+npx supabase projects api-keys --project-ref "프로젝트참조ID"
+
+# 프로젝트 링크 + 마이그레이션 초기화
+npx supabase init
+npx supabase link --project-ref "프로젝트참조ID"
+```
+
+---
+
+**대시보드 방식 상세** (방법 A):
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co

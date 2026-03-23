@@ -183,11 +183,20 @@ export async function signOut() {
 ```javascript
 const supabase = createClient();
 
-supabase.auth.onAuthStateChange((event, session) => {
+// 리스너 등록 — subscription 객체를 받아둔다
+const {
+  data: { subscription },
+} = supabase.auth.onAuthStateChange((event, session) => {
   console.log("인증 이벤트:", event);
   console.log("세션:", session);
 });
+
+// 컴포넌트가 사라질 때 반드시 해제 (메모리 누수 방지)
+// React useEffect의 return 함수에서 호출한다
+return () => subscription.unsubscribe();
 ```
+
+> **⚠️ AI 주의사항**: Copilot이 `onAuthStateChange`를 사용하면서 `subscription.unsubscribe()` 클린업을 빠뜨리는 경우가 많다. useEffect의 return 함수에서 반드시 해제해야 한다.
 
 **표 9.6** 주요 인증 이벤트
 

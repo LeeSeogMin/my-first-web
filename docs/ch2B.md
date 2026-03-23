@@ -38,6 +38,25 @@ Ch1에서 만든 프로젝트를 이어서 사용한다.
 
 ---
 
+### AI 도구별 프롬프트 팁
+
+이 교재의 프롬프트는 GitHub Copilot Agent 모드를 기준으로 작성되어 있다. 다른 AI 도구를 사용할 때는 다음 사항을 참고한다.
+
+**표 2.8** AI 도구별 컨텍스트 전달 방법
+
+| 항목 | GitHub Copilot (Agent 모드) | Gemini CLI | Claude Code |
+|------|---------------------------|------------|-------------|
+| 파일 참조 | `#file:app/page.tsx` | 자동으로 프로젝트 파일 인식 | `@파일명` 또는 자동 인식 |
+| 터미널 실행 | Agent 모드에서 자동 실행 | 터미널에서 직접 요청 | 자동 실행 |
+| 프로젝트 규칙 | `.github/copilot-instructions.md` | `GEMINI.md` 또는 `AGENTS.md` | `CLAUDE.md` |
+| 버전 명시 | copilot-instructions.md에 기록 | 프롬프트에 직접 명시 | CLAUDE.md에 기록 |
+| MCP 사용 | `.vscode/mcp.json` 설정 | 별도 MCP 클라이언트 설정 | `.mcp.json` 또는 내장 |
+
+> **Gemini CLI 사용자**: 프롬프트 앞에 `@AGENTS.md를 먼저 읽어줘.`를 붙이면 프로젝트 규칙을 인식한다.
+> **Claude Code 사용자**: `CLAUDE.md`에 규칙을 기록하면 자동으로 인식된다.
+
+---
+
 ## 개인 실습
 
 ### 체크포인트 1: copilot-instructions.md 만들기
