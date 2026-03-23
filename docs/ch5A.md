@@ -156,7 +156,7 @@ function PostCard({ title, content }: PostCardProps) {
 Props는 **읽기 전용**이다. 자식 컴포넌트가 props를 직접 수정할 수 없다. 데이터를 변경하려면 Ch6에서 배우는 **상태**(State)를 사용한다.
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "PostCard 컴포넌트를 만들어줘. title(문자열), content(문자열), date(문자열), author(문자열)를 props로 받고, Tailwind CSS로 카드 형태로 스타일링해줘. Next.js App Router 프로젝트."
@@ -299,7 +299,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
 `"use client"` 지시어는 이 컴포넌트가 **클라이언트 컴포넌트**(Client Component)임을 표시한다. Next.js App Router에서 컴포넌트는 기본적으로 **서버 컴포넌트**(Server Component)이다. `onClick` 같은 이벤트 처리가 필요하면 `"use client"`를 파일 맨 위에 추가한다. 이 개념은 Ch6에서 자세히 배운다. 지금은 "error.tsx에는 항상 `"use client"`를 붙인다"고 기억하면 된다.
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "app/layout.tsx를 수정해줘. 상단에 내비게이션 바(홈, 블로그 링크 포함), 하단에 푸터를 추가하고, 본문은 max-w-4xl mx-auto로 중앙 정렬해줘. Next.js 16 App Router, Tailwind CSS 사용."
@@ -377,7 +377,7 @@ export default async function PostDetailPage({
 > "게시글 상세 페이지 만들어줘"
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "app/posts/[id]/page.tsx를 만들어줘. Next.js 16 App Router 사용. params를 await해서 id를 추출해줘. 더미 게시글 데이터(id, title, content, author, date)를 표시하고 Tailwind CSS로 기사 스타일 레이아웃 적용."

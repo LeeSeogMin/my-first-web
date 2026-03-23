@@ -197,7 +197,7 @@ setPosts(posts.filter(p => p.id !== id));                  // 삭제
 ```
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "React에서 posts 배열 state를 불변성을 유지하면서 추가, 수정, 삭제하는 코드를 보여줘. 스프레드 연산자와 map/filter 사용. push, splice 같은 직접 수정은 하지 마."
@@ -349,7 +349,7 @@ function PostList({ posts }: PostListProps) {
 > "게시글 목록 페이지 만들어줘"
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "app/posts/page.tsx를 Server Component로 만들어줘. 데이터는 lib/posts.ts에서 가져와. 검색 기능이 필요한 SearchBar는 별도 Client Component(components/SearchBar.tsx)로 분리해줘. 'use client'는 SearchBar에만 적용."
@@ -591,7 +591,7 @@ function PostList() {
 ```
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "usePosts 커스텀 훅을 만들어줘. JSONPlaceholder에서 게시글을 가져오고, posts, isLoading, error를 반환해줘. 'use client' 파일로 만들어줘."

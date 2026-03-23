@@ -113,7 +113,7 @@ Supabase 대시보드에서 이메일 로그인이 활성화되어 있는지 확
 ### 9.3.1 이메일/비밀번호 인증 `🤖 바이브코딩`
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "Supabase에서 이메일/비밀번호로 로그인 및 회원가입하는 함수를 만들어줘.
@@ -209,7 +209,7 @@ supabase.auth.onAuthStateChange((event, session) => {
 ### 9.4.1 AuthContext 구현 `🤖 바이브코딩`
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "React Context를 사용한 Supabase 인증 상태 관리를 구현해줘.
@@ -403,7 +403,7 @@ function AuthButtons() {
 로그인하지 않은 사용자가 `/mypage`에 접근하면 로그인 페이지로 보내야 한다. Next.js의 **미들웨어**(Middleware)를 사용하면 서버 레벨에서 이를 강제할 수 있다.
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "Next.js 미들웨어에서 Supabase 인증 상태를 확인하고,

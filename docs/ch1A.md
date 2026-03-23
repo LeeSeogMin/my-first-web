@@ -247,7 +247,7 @@ code .
 | `public/`            | 이미지 등 정적 파일                  |
 | `package.json`       | 프로젝트 설정과 의존성 목록          |
 | `next.config.mjs`    | Next.js 설정 파일                    |
-| `tailwind.config.js` | Tailwind CSS 설정 파일               |
+| `postcss.config.mjs`  | PostCSS 설정 (Tailwind CSS 4 연동)   |
 
 지금 가장 중요한 파일은 `app/page.tsx`이다. 이 파일의 내용이 웹사이트의 첫 화면에 나타난다.
 

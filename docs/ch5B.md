@@ -82,9 +82,9 @@
 
 **목표**: 목록 페이지에서 더미 게시글을 카드로 표시하고, 클릭하면 상세 페이지로 이동한다.
 
-① `lib/posts.ts`의 더미 데이터를 확인한다 (3개 게시글)
-② Copilot Chat에 프롬프트를 입력하여 목록 페이지 코드를 생성한다
-② Copilot이 직접 파일을 수정한다 — 변경된 코드를 확인
+① `lib/posts.ts`에 더미 데이터 파일을 만든다 (3개 게시글 — id, title, content, author, date). Copilot에게 요청하거나 직접 작성한다.
+② Copilot Chat에 프롬프트를 입력하여 `app/posts/page.tsx` 목록 페이지 코드를 생성한다
+③ Copilot이 직접 파일을 수정한다 — 변경된 코드를 확인
 ④ **Link 사용 확인**: `<a>` 태그가 아닌 `<Link>`를 사용했는지 검사한다
 ⑤ **key 속성 확인**: `map()` 안에 `key={post.id}`가 있는지 검사한다
 ⑥ **import 경로 확인**: `lib/posts.ts`에서 올바르게 import했는지 검사한다
@@ -124,7 +124,7 @@
 ① 아래 검증 체크리스트를 수행한다
 ② 문제가 있으면 수정한다
 ③ 전체 흐름 테스트: `/posts` 목록 → 카드 클릭 → `/posts/1` 상세 → 목록으로 돌아가기 → `/posts/new` 작성 → 제출 → 목록으로 이동
-③ Copilot Chat(Agent 모드)에 배포 요청:
+④ Copilot Chat(Agent 모드)에 배포 요청:
 
 > **Copilot 프롬프트**
 >

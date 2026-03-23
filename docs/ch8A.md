@@ -55,7 +55,8 @@ flowchart TD
 | `next`                  | 16.2.1 |
 | `@supabase/supabase-js` | 2.47.12 |
 | `@supabase/ssr`         | 0.5.2   |
-| `tailwindcss`           | 3.4.17  |
+| `tailwindcss`           | 4       |
+| `react`                 | 19.2.4  |
 
 ---
 

@@ -150,7 +150,7 @@ function getUserMessage(error: { code?: string; message?: string }): string {
 Next.js App Router는 파일 기반 에러 처리를 제공한다. 폴더에 **error.js**(Error Boundary File)를 넣으면, 해당 폴더와 하위 경로에서 발생하는 에러를 자동으로 잡는다:
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "Next.js App Router에서 error.js를 사용한 에러 처리 컴포넌트를 만들어줘.
@@ -241,7 +241,7 @@ export default function Loading() {
 **스켈레톤 UI**(Skeleton UI)는 콘텐츠가 로드되기 전에 **레이아웃의 뼈대**를 미리 보여주는 패턴이다. 빈 화면이나 스피너보다 사용자 경험이 좋다.
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "Tailwind CSS로 게시글 목록의 스켈레톤 UI를 만들어줘.
@@ -296,7 +296,7 @@ export default function PostListSkeleton() {
 사용자가 잘못된 데이터를 입력하면 **서버에 보내기 전에** **클라이언트 사이드 검증**(Client-side Validation)으로 먼저 거른다. 서버 왕복을 줄이고, 즉각적인 피드백을 줄 수 있다.
 
 
-> [버전 고정] Next.js 16.2.1, React 18.3.1, Tailwind CSS 3.4.17, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
+> [버전 고정] Next.js 16.2.1, React 19.2.4, Tailwind CSS 4, @supabase/supabase-js 2.47.12, @supabase/ssr 0.5.2 기준으로 작성해줘.
 > [규칙] App Router만 사용하고 next/router, pages router, 구버전 API는 사용하지 마.
 > [검증] 불확실하면 현재 프로젝트 package.json 기준으로 버전을 먼저 확인하고 답해줘.
 > "React에서 게시글 작성 폼의 유효성 검증을 구현해줘.
