@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import { AuthProvider } from "@/contexts/AuthContext";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "민준의 블로그",
-  description: "Next.js + Tailwind CSS로 만든 개인 블로그",
+  description: "Next.js + Supabase로 만든 개인 블로그",
 };
 
 export default function RootLayout({
@@ -29,37 +30,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <header className="bg-white shadow">
-          <nav className="mx-auto flex max-w-4xl items-center justify-between p-4">
-            <Link href="/" className="text-xl font-bold">
-              민준의 블로그
-            </Link>
-            <div className="flex gap-4">
-              <Link
-                href="/"
-                className="text-gray-600 hover:text-blue-500"
-              >
-                홈
-              </Link>
-              <Link
-                href="/posts"
-                className="text-gray-600 hover:text-blue-500"
-              >
-                블로그
-              </Link>
-              <Link
-                href="/posts/new"
-                className="text-gray-600 hover:text-blue-500"
-              >
-                새 글 쓰기
-              </Link>
-            </div>
-          </nav>
-        </header>
-        <main className="flex-1">{children}</main>
-        <footer className="border-t bg-white py-6 text-center text-sm text-gray-400">
-          &copy; 2026 김민준. All rights reserved.
-        </footer>
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <footer className="border-t bg-white py-6 text-center text-sm text-gray-400">
+            &copy; 2026 김민준. All rights reserved.
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );

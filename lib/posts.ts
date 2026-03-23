@@ -1,34 +1,70 @@
+import { createClient } from "@/lib/supabase/client";
+
 export interface Post {
-  id: number;
+  id: string;
+  user_id: string;
   title: string;
-  content: string;
-  author: string;
-  date: string;
+  content: string | null;
+  created_at: string;
+  profiles?: { username: string | null };
 }
 
-export const posts: Post[] = [
-  {
-    id: 1,
-    title: "Next.js로 블로그 만들기",
-    content:
-      "create-next-app으로 프로젝트를 생성하고 Vercel에 배포하는 과정을 정리했습니다. App Router를 사용하면 폴더 구조가 곧 URL 구조가 되어 직관적입니다.",
-    author: "김민준",
-    date: "2026-03-20",
-  },
-  {
-    id: 2,
-    title: "Tailwind CSS 핵심 정리",
-    content:
-      "유틸리티 퍼스트 CSS의 장점과 자주 쓰는 클래스를 정리했습니다. p-4, text-lg, bg-blue-500 같은 클래스만 알면 대부분의 스타일링이 가능합니다.",
-    author: "김민준",
-    date: "2026-03-18",
-  },
-  {
-    id: 3,
-    title: "AI 바이브코딩 후기",
-    content:
-      "Copilot과 함께 코딩하면서 느낀 점을 공유합니다. AI가 생성한 코드를 반드시 검증해야 하며, 좋은 프롬프트가 좋은 코드를 만듭니다.",
-    author: "김민준",
-    date: "2026-03-15",
-  },
-];
+// 목록 조회 (최신순, 작성자 포함)
+export async function getPosts() {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*, profiles(username)")
+    .order("created_at", { ascending: false });
+  return { data, error };
+}
+
+// 단건 조회
+export async function getPost(id: string) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*, profiles(username)")
+    .eq("id", id)
+    .single();
+  return { data, error };
+}
+
+// 생성
+export async function createPost(
+  user_id: string,
+  title: string,
+  content: string
+) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .insert({ user_id, title, content })
+    .select();
+  return { data, error };
+}
+
+// 수정
+export async function updatePost(
+  id: string,
+  title: string,
+  content: string
+) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .update({ title, content })
+    .eq("id", id)
+    .select();
+  return { data, error };
+}
+
+// 삭제
+export async function deletePost(id: string) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .delete()
+    .eq("id", id);
+  return { data, error };
+}
