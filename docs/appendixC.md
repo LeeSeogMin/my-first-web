@@ -38,7 +38,7 @@ node --version
 
 ### C.3.1 명령 팔레트에서 등록
 
-1. `Ctrl+Shift+P` (macOS: `Cmd+Shift+P`) 를 눌러 명령 팔레트 열기
+1. `Cmd+Shift+P` 를 눌러 명령 팔레트 열기
 2. `MCP: Add Server` 입력 후 Enter
 3. 목록에서 **context7** 검색 → 선택
 

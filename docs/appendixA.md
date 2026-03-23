@@ -19,9 +19,8 @@ GitHub 인증 방식은 두 가지이다. 편한 방법을 선택한다.
 
 ### A.2.1 GitHub CLI 설치
 
-**Windows**:
 ```bash
-winget install GitHub.cli
+brew install gh
 ```
 
 설치 후 터미널을 **새로 열고** 버전을 확인한다:
@@ -29,10 +28,7 @@ winget install GitHub.cli
 gh --version
 ```
 
-**macOS**:
-```bash
-brew install gh
-```
+> Homebrew가 설치되어 있지 않으면 [https://brew.sh](https://brew.sh/) 에서 설치한다.
 
 ### A.2.2 로그인
 
@@ -88,14 +84,14 @@ gh auth status
 - **Username**: GitHub 아이디
 - **Password**: PAT 붙여넣기 (비밀번호가 아님)
 
-### A.3.3 Windows 자격 증명 관리자에 저장 (선택)
+### A.3.3 macOS 키체인에 저장 (선택)
 
 매번 입력하지 않으려면:
 ```bash
-git config --global credential.helper manager
+git config --global credential.helper osxkeychain
 ```
 
-이후 한 번 PAT로 인증하면 Windows 자격 증명 관리자에 저장되어 자동 로그인된다.
+이후 한 번 PAT로 인증하면 macOS 키체인에 저장되어 자동 로그인된다.
 
 ---
 
@@ -119,7 +115,7 @@ git remote set-url origin https://github.com/[아이디]/[저장소명].git
 ### VS Code에서 로그인 창이 반복해서 뜰 때
 
 ```bash
-git config --global credential.helper manager
+git config --global credential.helper osxkeychain
 gh auth login
 ```
 

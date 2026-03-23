@@ -65,7 +65,7 @@
 ② Grid 반응형을 적용한다 (grid-cols-1 md:grid-cols-2)
 ③ 내비게이션 바에 Flexbox를 적용한다 (flex justify-between items-center)
 ④ hover 효과를 추가한다 (hover:shadow-lg transition)
-⑤ DevTools 디바이스 모드(Ctrl+Shift+M, macOS: Cmd+Shift+M)로 반응형을 확인한다
+⑤ DevTools 디바이스 모드(`Cmd+Shift+M`)로 반응형을 확인한다
 
 Copilot에게 스타일 개선을 요청할 때:
 
