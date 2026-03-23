@@ -127,7 +127,7 @@ npx shadcn@latest init
 ③ context.md를 작성한다 — 현재 상태, 기술 결정 사항 기록
 ④ todo.md를 작성한다 — 전체 작업 체크리스트 (Ch8~12에서 구현할 항목 포함)
 ⑤ 아래 검증 체크리스트를 수행한다
-③ Copilot Chat(Agent 모드)에 배포 요청:
+⑥ Copilot Chat(Agent 모드)에 배포 요청:
 
 > **Copilot 프롬프트**
 >

@@ -157,7 +157,7 @@ export default async function Home() {
 
 ② `npm run dev`로 로컬에서 데이터가 표시되는지 확인한다
 ③ Vercel 대시보드 → Settings → Environment Variables에 환경 변수를 등록한다
-③ Copilot Chat(Agent 모드)에 배포 요청:
+④ Copilot Chat(Agent 모드)에 배포 요청:
 
 > **Copilot 프롬프트**
 >
