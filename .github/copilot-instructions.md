@@ -41,3 +41,5 @@
 - `for` 금지 → `htmlFor` 사용
 - params는 Promise → `const { id } = await params`
 - Tailwind CSS 3 문법 금지 → Tailwind CSS 4 (@theme 블록) 사용
+- `@supabase/auth-helpers` 금지 → `@supabase/ssr` 사용
+- `getServerSideProps` / `getStaticProps` 금지 → Server Component에서 직접 fetch

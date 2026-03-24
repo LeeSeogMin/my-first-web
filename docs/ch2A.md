@@ -1,6 +1,6 @@
-# Chapter 2. Copilot 세팅과 바이브코딩 — A회차: 강의
+# Chapter 2. Copilot 세팅과 바이브코딩
 
-> **미션**: Copilot을 제대로 세팅하고, AI의 한계를 이해하고, 컨텍스트 관리법을 배운다
+> **미션**: Copilot을 세팅하고 AI 한계를 이해한 뒤, 블로그 소개 페이지 생성·검증·배포까지 완료한다
 
 ---
 
@@ -8,392 +8,230 @@
 
 1. 바이브코딩의 원리(설명 → 생성 → 검증 → 반복)를 설명할 수 있다
 2. AI 코딩의 3대 한계(버전 불일치, 컨텍스트 소실, 환각)를 이해하고 대응할 수 있다
-3. GitHub Copilot과 Copilot Chat을 설치하고 사용할 수 있다
-4. copilot-instructions.md를 작성하여 Copilot에게 프로젝트 컨텍스트를 제공할 수 있다
+3. GitHub Copilot을 설치하고 copilot-instructions.md를 작성할 수 있다
+4. 블로그 소개 페이지를 생성·검증·배포하고 AI 사용 로그를 남길 수 있다
+
+**오늘의 산출물**:
+
+| # | 파일 | 설명 |
+|---|------|------|
+| 1 | `.github/copilot-instructions.md` | 프로젝트 규칙 (AI가 매 세션 자동 참조) |
+| 2 | `app/page.tsx` | 블로그 소개 페이지 |
+| 3 | `ai-log.md` | AI 사용 로그 |
+| 4 | 배포 URL | Vercel 자동 배포 결과 |
 
 ---
 
-## 수업 타임라인
+## 2.1 바이브코딩
 
-**표 2.1** A회차 수업 타임라인 (90분)
-
-| 시간대      | 활동                                    | 비고                         |
-| ----------- | --------------------------------------- | ---------------------------- |
-| 00:00~00:10 | 출석 + 빠른 진단 (환각 패키지 문제)     | 퀴즈 1문항                   |
-| 00:10~00:30 | 2.1~2.2: 바이브코딩 원리 + AI 3대 한계  | 강의 (PPT/판서)              |
-| 00:30~00:50 | 2.3: Copilot 설정 (확장 설치)           | 실습 (학생들이 직접 설치)    |
-| 00:50~01:10 | 2.4: copilot-instructions.md 작성 시연  | 라이브 코딩 (교수 시연)      |
-| 01:10~01:25 | 2.5~2.6: Agent Mode/Skills + AI 로그    | 강의 (개념 설명)             |
-| 01:25~01:30 | Exit ticket + B회차 과제 안내           | 블로그 소개 페이지 생성 예고 |
-
----
-
-
-## 2.1 바이브코딩이란
-
-### 2.1.1 AI 시대의 개발 방식 변화
-
-전통적인 개발은 개발자가 모든 코드를 직접 타이핑했다. 문법을 외우고, API 문서를 읽고, 한 줄씩 작성했다.
-
-**바이브코딩**(Vibe Coding)은 다르다. 개발자가 "무엇을 만들고 싶은지"를 AI에게 설명하면, AI가 코드를 생성한다. 개발자의 역할은 코드를 타이핑하는 것에서 **코드를 검증하고 방향을 잡는 것**으로 바뀌었다.
-
-쉽게 말해서, AI가 코드를 쓰고 내가 확인하는 방식이다.
-
-### 2.1.2 바이브코딩의 원리: 설명 → 생성 → 검증 → 반복
-
-바이브코딩은 네 단계를 반복한다:
+**바이브코딩**(Vibe Coding)은 AI에게 "무엇을 만들고 싶은지" 설명하면 AI가 코드를 생성하고, 개발자가 검증·수정하는 방식이다.
 
 ```text
-① 설명: 만들고 싶은 것을 명확하게 AI에게 지시한다
-② 생성: AI가 코드를 생성한다
-③ 검증: 생성된 코드가 올바른지 확인한다
-④ 반복: 틀린 부분을 수정 지시하거나, 다음 기능을 요청한다
+① 설명 → ② 생성 → ③ 검증 → ④ 반복
 ```
 
-이 중 가장 중요한 단계는 **③ 검증**이다. AI가 만든 코드를 그대로 사용하면 안 된다. 반드시 확인하고, 이해한 뒤 사용한다.
+가장 중요한 단계는 **③ 검증**이다. AI가 만든 코드를 그대로 사용하면 안 된다.
 
-> **Antigravity 사용**:
-> Antigravity에서도 동일한 흐름이다. Agent Panel(`Cmd+Shift+I`)에서 프롬프트를 입력하면 AI가 코드를 생성하고 파일을 직접 수정한다.
-
-### 2.1.3 기본기가 필요한 이유: AI 출력을 판단하려면
-
-"AI가 코드를 다 만들어주면, 기본기를 왜 배워야 하는가?"
-
-AI가 만든 코드가 **맞는지 틀리는지 판단하려면** 기본기가 필요하다. HTML 구조를 모르면 AI가 잘못된 마크업을 생성해도 알아차리지 못한다. JavaScript를 모르면 에러 메시지를 읽을 수 없다.
-
-비유하자면, 번역기가 아무리 좋아도 원어를 어느 정도 아는 사람이 결과를 더 잘 검증한다. 이 수업에서 3~6장에 걸쳐 HTML, CSS, JavaScript, Next.js 기본기를 배우는 이유가 바로 이것이다.
+> AI 출력을 판단하려면 기본기가 필요하다. HTML 구조를 모르면 잘못된 마크업을 놓치고, JavaScript를 모르면 에러 메시지를 읽을 수 없다. 3~6장에서 기본기를 배우는 이유이다.
 
 ---
 
 ## 2.2 AI 코딩의 3대 한계
 
-AI 코딩 도구는 강력하지만, 반드시 알아야 할 세 가지 한계가 있다. **이것을 모르면 바이브코딩은 실패한다.**
+### 한계 1: 버전 불일치
 
-### 2.2.1 한계 1: 버전 불일치
+AI는 과거 데이터로 학습한다. `npx create-next-app@latest`로 최신 버전이 설치되지만, AI는 구버전 문법을 제안한다.
 
-AI는 과거 시점의 데이터로 학습한다. 그런데 라이브러리는 계속 업데이트된다.
-
-**예를 들어**:
-
-- AI가 예전 버전 기준으로 학습했다면, 현재 프로젝트와 맞지 않는 구버전 문법을 제안한다
-- 그런데 `npx create-next-app@latest`로 설치하면 그 시점의 최신 버전이 설치된다
-- AI의 학습 데이터와 실제 설치된 버전 사이에 **갭(gap)**이 생긴다
-- AI가 제안한 코드를 그대로 쓰면 에러가 난다
-
-이 교재에서 `@latest`를 사용하는 이유가 있다. 특정 버전을 고정하면 교재가 금방 낡는다. `@latest`를 쓰되, **설치 직후 버전을 확인하고 AI에게 알려주는 습관**이 해결책이다.
-
-**실제 사례**:
-
-```jsx
-// AI가 제안하는 코드 (구버전 방식 — 틀림)
+```tsx
+// ❌ AI가 자주 제안하는 구버전 코드
 import { useRouter } from "next/router";
 
-// 올바른 코드 (App Router 공통)
+// ✅ App Router에서 올바른 코드
 import { useRouter } from "next/navigation";
 ```
 
-`next/router`는 Pages Router(구 방식)의 import 경로이다. App Router에서는 `next/navigation`을 써야 한다. AI는 이 차이를 모르고 옛날 코드를 제안하는 경우가 많다.
+**해결**: 설치 직후 버전을 확인하고 copilot-instructions.md에 기록한다.
 
-### 2.2.2 한계 2: 컨텍스트 소실
+### 한계 2: 컨텍스트 소실
 
-AI에게는 **장기 기억이 없다**. 채팅 세션이 끝나면 이전 대화를 모두 잊는다.
+AI에게는 장기 기억이 없다. 세션이 끝나면 이전 대화를 잊고, 열린 파일만 참고하며, 프로젝트 설계 의도를 모른다.
 
-구체적으로:
+**해결**: `@workspace` 명령으로 프로젝트 전체를 참조시킨다.
 
-- **세션 간 기억 없음**: 어제 나눈 대화를 오늘은 모른다
-- **열린 파일 위주**: 프로젝트에 파일이 20개 있어도, 열려 있는 파일만 참고한다
-- **설계 의도를 모른다**: "왜 이 컴포넌트를 이렇게 만들었는지" 모른 채 코드를 생성한다
+### 한계 3: 환각
 
-결과적으로 AI는 프로젝트의 일부분만 보고 코드를 만든다. 전체 구조와 맞지 않는 코드를 생성하거나, 이미 있는 기능을 다시 만들거나, 일관성 없는 스타일로 코드를 작성한다.
+AI가 존재하지 않는 패키지, API, 옵션을 자신 있게 제시하는 현상이다.
 
-### 2.2.3 한계 3: 환각
+| 유형 | 예시 |
+|------|------|
+| 가짜 패키지 | `npm install next-auth-supabase` — 존재하지 않음 |
+| 가짜 API | `supabase.from('posts').upsertMany([...])` — 없는 메서드 |
+| 가짜 옵션 | `fetch(url, { retry: 3 })` — fetch에 retry 옵션 없음 |
 
-**환각**(Hallucination)은 AI가 **존재하지 않는 것을 만들어내는 현상**이다. 이것이 가장 위험하다.
+**해결**: 새 패키지는 [npmjs.com](https://npmjs.com)에서 확인 후 설치한다.
 
-**표 2.2** 환각의 유형
-
-| 유형        | 예시                                                     |
-| ----------- | -------------------------------------------------------- |
-| 가짜 패키지 | `npm install next-auth-supabase` — 존재하지 않는 패키지  |
-| 가짜 API    | `supabase.from('posts').upsertMany([...])` — 없는 메서드 |
-| 가짜 옵션   | `fetch(url, { retry: 3 })` — fetch에 retry 옵션은 없음   |
-| 가짜 설정   | `next.config.js`에 존재하지 않는 설정 키                 |
-
-AI는 이런 가짜 코드를 **자신 있는 말투로** 제시한다. 더 위험한 경우는 **비슷한 이름의 악성 패키지**가 존재하는 경우이다. 이를 **타이포스쿼팅**(Typosquatting)이라 한다.
-
-### 2.2.4 3대 한계의 관계
+### 3대 한계의 관계
 
 ```text
 버전 불일치 + 컨텍스트 부족 → 환각 확률 증가
 ```
 
-AI가 현재 버전을 모르고, 프로젝트 맥락도 모르면, 그럴듯하지만 틀린 코드를 만들어낼 확률이 높아진다.
-
 ---
 
-## 2.3 GitHub Copilot 설정
+## 2.3 Copilot 설정
 
-> **실습 안내**: 안내 순서에 따라 GitHub Copilot 확장을 설치한다.
+### Copilot Pro 무료 활성화
 
-**③ Copilot Pro 무료 활성화**
+1. [github.com/settings/copilot](https://github.com/settings/copilot) 접속
+2. **"Get access to GitHub Copilot"** 클릭하여 활성화
 
-Student Pack 승인 후 Copilot을 별도로 활성화해야 한다:
+> **주의**: 신용카드 입력이 요구되면 진행하지 않는다. 학생 혜택은 완전 무료이다.
 
-1. https://github.com/settings/copilot 접속
-2. **"Get access to GitHub Copilot"** 버튼을 클릭하여 무료 활성화
+**트러블슈팅**: 승인 후 혜택이 안 보이면 72시간 대기 후 재로그인. 인증 실패 시 학생증 수동 업로드 또는 [GitHub Support](https://support.github.com/contact/education)에 티켓 제출.
 
-> **주의**: 이 과정에서 **신용카드 입력이 요구되면 진행하지 않는다**. 학생 혜택은 완전 무료이다.
+### VS Code 확장 설치
 
-**트러블슈팅**:
-
-- 승인 후 혜택이 안 보이면: 72시간 대기 후 로그아웃/재로그인 시도
-- 인증 실패 시: 학생증 사진을 수동으로 업로드하거나 GitHub Support(https://support.github.com/contact/education)에 티켓 제출
-
-> **무료 대안 — Antigravity**: Copilot 승인 대기 중이라면 **Antigravity**(antigravity.google)를 사용할 수 있다. VS Code 포크 IDE로, `.edu` 이메일이면 Starter 플랜을 무료로 사용할 수 있다. 자동완성, Agent Panel, MCP가 기본 내장되어 있다.
-
-> **Antigravity 사용**:
-> Antigravity는 별도 확장 설치 없이 IDE 자체에 AI 기능이 내장되어 있다. antigravity.google에서 다운로드 후 프로젝트 폴더를 열면 바로 사용할 수 있다.
-
-### 2.3.2 VS Code Copilot / Copilot Chat 확장 설치
-
-VS Code에서 다음 두 확장을 설치한다:
-
-**표 2.3** Copilot 확장 설치
-
-| 확장명              | 용도                         |
-| ------------------- | ---------------------------- |
-| GitHub Copilot      | 코드 자동완성 (Tab으로 수락) |
+| 확장명 | 용도 |
+|--------|------|
+| GitHub Copilot | 코드 자동완성 (Tab 수락) |
 | GitHub Copilot Chat | 대화형 코드 생성 (채팅 패널) |
 
 설치 후 VS Code 오른쪽 하단에 Copilot 아이콘이 나타나면 성공이다.
 
-> **트러블슈팅**: 아이콘이 안 나오면 VS Code 재시작. 로그인 실패 시 GitHub 토큰 재인증.
+### 자동완성 단축키
 
-> **Antigravity 사용**:
-> Antigravity에서는 `Cmd+Shift+I`로 Agent Panel을 연다. Copilot Chat과 유사한 대화형 패널이 기본 내장되어 있다.
+| 단축키 | 기능 |
+|--------|------|
+| `Tab` | 제안 수락 |
+| `Esc` | 제안 거부 |
+| `Option + ]` / `[` | 다음/이전 제안 |
 
-### 2.3.3 Copilot 자동완성: Tab 수락, 주석으로 의도 전달
+### Copilot Chat 주요 명령어
 
-Copilot의 가장 기본적인 기능은 **자동완성**이다. 코드를 타이핑하면 회색 글씨로 제안이 나타나고, `Tab`을 누르면 수락된다.
+| 명령어 | 용도 |
+|--------|------|
+| `@workspace` | 프로젝트 전체를 참조하여 대답 |
+| `/explain` | 선택한 코드 설명 |
+| `/fix` | 에러 수정 제안 |
+| `Cmd + I` | 인라인 편집 |
 
-주석으로 의도를 전달하면 더 정확한 제안을 받을 수 있다:
+### Copilot Chat 모드
 
-```jsx
-// 현재 날짜를 "2026년 2월 7일" 형식으로 반환하는 함수
-```
+| 모드 | 동작 | 예시 |
+|------|------|------|
+| **Ask** | 질문에 답변 (코드 수정 안 함) | "이 함수가 뭘 하는 거야?" |
+| **Edit** | 선택한 코드만 수정 | 코드 선택 → "TypeScript로 변환해줘" |
+| **Agent** | 파일 탐색 + 수정 + 터미널 실행 | "게시글 CRUD API를 만들어줘" |
 
-**표 2.4** Copilot 자동완성 단축키
-
-| 단축키              | 기능           |
-| ------------------- | -------------- |
-| `Tab`               | 제안 수락      |
-| `Esc`               | 제안 거부      |
-| `Option + ]`        | 다음 제안 보기 |
-| `Option + [`        | 이전 제안 보기 |
-
-> **Antigravity 사용**:
-> Antigravity도 Tab 자동완성(Supercomplete)을 지원한다. 코드를 타이핑하면 제안이 나타나고, `Tab`으로 수락한다. Copilot과 동일한 흐름이다.
-
-### 2.3.4 Copilot Chat: @workspace, /explain, /fix, Ctrl+I
-
-**표 2.5** Copilot Chat 주요 명령어
-
-| 명령어                        | 용도                          | 예시                                       |
-| ----------------------------- | ----------------------------- | ------------------------------------------ |
-| `@workspace`                  | 프로젝트 전체를 참조하여 대답 | "@workspace 이 프로젝트의 구조를 설명해줘" |
-| `/explain`                    | 선택한 코드 설명              | 코드 선택 후 `/explain`                    |
-| `/fix`                        | 에러 수정 제안                | 에러 코드 선택 후 `/fix`                   |
-| `Cmd + I`                     | 인라인 편집                   | 코드 위에서 직접 수정 지시                 |
-
-> **Antigravity 사용**:
-> Antigravity에서도 `@workspace`, `/explain`, `/fix-errors` 명령을 사용할 수 있다. Agent Panel(`Cmd+Shift+I`)에서 동일한 방식으로 프롬프트를 입력하면 된다.
-
-### 좋은 프롬프트 vs 나쁜 프롬프트
-
-같은 기능을 요청하더라도 **프롬프트의 구체성**에 따라 결과가 크게 달라진다:
-
-> **나쁜 프롬프트**
-> "네비게이션 바 만들어줘"
-
-→ 기술 스택 불명, 디자인 불명, 프로젝트 맥락 없음. AI가 임의로 CSS 방식, 구조, 스타일을 결정한다.
-
-> **좋은 프롬프트**
-> "Next.js App Router 프로젝트의 app/layout.tsx에 네비게이션 바를 추가해줘.
-> Tailwind CSS로 스타일링하고, 왼쪽에 사이트 제목 '블로그', 오른쪽에 '글 목록'과 '로그인' 링크를 배치해줘.
-> 모바일에서는 가로로 쌓이지 않도록 flex-wrap 처리해줘."
-
-→ 기술 스택, 파일 위치, 구체적 요구사항이 명확하다. AI가 정확한 코드를 생성할 확률이 높다.
-
-**핵심 원칙**: 프롬프트에 **① 기술 스택** + **② 파일 위치** + **③ 구체적 요구사항**을 포함한다.
+> 이 수업에서는 주로 **Agent 모드**를 사용한다.
 
 ---
 
-## 2.4 컨텍스트 관리 3계층
+## 2.4 컨텍스트 관리와 copilot-instructions.md
 
-> **라이브 코딩 시연**: Copilot에게 copilot-instructions.md를 생성시키고, 블로그 소개 페이지를 만드는 과정을 시연한다.
+### 컨텍스트 관리 3계층
 
-### 2.4.1 1계층 — copilot-instructions.md (필수)
+| 계층 | 도구 | 역할 | 필수 여부 |
+|------|------|------|-----------|
+| 1 | `copilot-instructions.md` | 프로젝트 규칙 (매 세션 자동 적용) | **필수** |
+| 2 | `@workspace` | 프로젝트 전체 탐색 후 대답 | 권장 |
+| 3 | MCP (Context7 등) | 최신 공식 문서 실시간 참조 | 선택 (부록 C) |
 
-**컨텍스트 문제의 80%를 해결하는 핵심 파일**이다.
+### copilot-instructions.md란
 
-`.github/copilot-instructions.md`는 Copilot이 **매 세션마다 자동으로 읽는** 프로젝트 지시 파일이다.
+`.github/copilot-instructions.md`는 Copilot이 **매 세션마다 자동으로 읽는** 프로젝트 지시 파일이다. 컨텍스트 문제의 80%를 해결한다.
 
-#### 바이브 코딩으로 만들기
+**포함할 내용**:
 
-직접 타이핑하지 않고 Copilot에게 시킨다. 터미널에서 폴더를 만들고:
+| 섹션 | 역할 |
+|------|------|
+| **Tech Stack** | 설치된 버전을 명시하여 맞는 문법 유도 |
+| **Coding Conventions** | CSS 파일 생성 금지, 불필요한 `"use client"` 방지 등 |
+| **Known AI Mistakes** | AI가 자주 틀리는 패턴을 미리 금지 |
 
-```bash
-mkdir -p .github
-```
+**Known AI Mistakes 주요 항목**:
 
-Copilot Chat을 열고(`Cmd+Option+I`) 다음 프롬프트를 입력한다:
+| 금지 | 사용 | 이유 |
+|------|------|------|
+| `next/router` | `next/navigation` | App Router와 Pages Router의 경로가 다름 |
+| `pages/` 폴더 | `app/` 폴더 | Pages Router는 구버전 |
+| `@supabase/auth-helpers` | `@supabase/ssr` | 인증 라이브러리 교체됨 (Ch8) |
+| `const { id } = params` | `const { id } = await params` | Next.js 15부터 params가 Promise (Ch5) |
 
-> **Copilot 프롬프트**
->
+### 🤖 실습: copilot-instructions.md 만들기
+
+Copilot Chat을 **Agent 모드**로 전환하고 다음 프롬프트를 입력한다:
+
 > ".github/copilot-instructions.md 파일을 만들어줘.
 >
 > 내용:
->
 > - Tech Stack: package.json에서 확인한 Next.js, Tailwind CSS 버전 명시 (App Router ONLY)
-> - Coding Conventions: Server Component 기본, async/await 패턴, Tailwind CSS만 사용
-> - Known AI Mistakes: next/router 금지(next/navigation 사용), Pages Router 금지, @supabase/auth-helpers 금지(@supabase/ssr 사용), params/searchParams는 반드시 await"
+> - Coding Conventions: Server Component 기본, Tailwind CSS만 사용
+> - Known AI Mistakes: next/router 금지(next/navigation 사용), Pages Router 금지, params는 await 필수"
 
-**각 항목이 왜 필요한가**:
+**검증**:
 
-| 항목 | 설명 |
-| ---- | ---- |
-| **Tech Stack** | AI는 과거 버전 기준으로 코드를 만든다. 현재 설치된 버전을 알려주면 맞는 문법을 사용한다 |
-| **Coding Conventions** | AI가 CSS 파일을 따로 만들거나 불필요한 `"use client"`를 넣는 것을 방지한다 |
-| **Known AI Mistakes** | AI가 **자주 틀리는 패턴**을 미리 금지한다. 아래에서 하나씩 설명한다 |
-
-**Known AI Mistakes 상세 설명**:
-
-- **`next/router` 금지 → `next/navigation` 사용**: App Router(현재 방식)와 Pages Router(구 방식)는 import 경로가 다르다. AI는 구버전 경로를 제안하는 경우가 많다
-- **Pages Router 금지**: `pages/` 폴더 구조는 구버전이다. 이 수업에서는 `app/` 폴더만 사용한다
-- **`@supabase/auth-helpers` 금지 → `@supabase/ssr` 사용**: Supabase 인증 라이브러리가 교체되었다. AI는 옛날 패키지명을 제안한다 (Ch8에서 사용)
-- **`params`/`searchParams`는 반드시 `await`**: Next.js 15부터 동적 라우트의 params가 Promise로 변경되었다. `const { id } = params` ❌ → `const { id } = await params` ✅ (Ch5에서 사용)
-
-> **Antigravity 사용**:
-> Antigravity에서는 프로젝트 루트에 `GEMINI.md` 또는 `AGENTS.md`를 작성하면 자동으로 인식된다. Copilot의 `copilot-instructions.md`와 동일한 역할이다. 위 프롬프트에서 파일 경로만 `GEMINI.md`로 바꿔서 요청하면 된다.
-
-#### 수정 방법 (AI에게 시키기)
-
-AI가 틀린 코드를 생성하면, Copilot Chat에 수정 요청:
-
-> **Copilot 프롬프트**
->
-> ".github/copilot-instructions.md의 Known AI Mistakes에 추가해줘:
-> 'CSS 파일을 따로 만들지 말 것 → Tailwind CSS 클래스만 사용'"
-
-저장(Cmd+S) 후 다음 프롬프트부터 바로 적용된다.
-
-### 2.4.2 2계층 — @workspace로 전체 프로젝트 참조 (권장)
-
-**@workspace** 명령어를 사용하면 Copilot이 프로젝트 전체를 탐색한 뒤 대답한다.
-
-> **Copilot 프롬프트**
->
-> "@workspace 현재 프로젝트의 페이지 구조를 파악하고, 새로운 /about 페이지를 추가해줘"
-
-@workspace 없이 질문하면 **열린 파일만** 참고한다. @workspace를 붙이면 **프로젝트 전체**를 스캔한다.
-
-> **Antigravity 사용**:
-> Antigravity에서도 `@workspace`를 지원한다. Agent Panel에서 `@workspace`를 입력하면 프로젝트 전체를 참조하여 대답한다.
-
-### 2.4.3 3계층 — MCP로 공식 문서 실시간 참조 (선택)
-
-**MCP**(Model Context Protocol)를 사용하면 Copilot이 최신 공식 문서를 실시간으로 참조할 수 있다. 버전 불일치 문제를 크게 줄여준다.
-
-> MCP 설정은 선택 사항이며, 자세한 방법은 부록 C를 참고한다.
-
-> **Antigravity 사용**:
-> Antigravity는 MCP를 기본 지원한다. `Cmd+Shift+P` → `MCP: Add Server`로 등록하고, Agent Panel에서 `@MCP서버명`으로 호출할 수 있다.
+1. 생성된 파일을 열어 `package.json`의 실제 버전과 일치하는지 확인한다.
+2. 틀리면 Copilot에게 수정 지시 후 저장한다.
 
 ---
 
-## 2.5 Agent Mode와 Agent Skills
+## 2.5 좋은 프롬프트 작성법
 
-### 2.5.1 Agent Mode: AI가 스스로 계획하고 실행하기
+**핵심 원칙**: ① 기술 스택 + ② 파일 위치 + ③ 구체적 요구사항
 
-Copilot Chat 상단에는 세 가지 모드가 있다: **Ask**, **Edit**, **Agent**. 지금까지 사용한 것은 Ask/Edit 모드이다.
+❌ 나쁜 프롬프트:
+> "블로그 소개 페이지 만들어줘"
 
-**Agent Mode**는 Copilot이 여러 단계의 작업을 **스스로 계획하고 실행**하는 모드이다. 파일을 탐색하고, 코드를 수정하고, 터미널 명령어까지 실행한다.
+→ 기술 스택, 파일 위치가 없다. AI가 임의로 판단한다.
 
-**표 2.7** Copilot Chat 모드 비교
+✅ 좋은 프롬프트:
+> "app/page.tsx를 블로그 소개 페이지로 수정해줘.
+> Tailwind CSS로 중앙에 흰색 카드(rounded-lg shadow)를 배치하고,
+> 이름(text-3xl font-bold), 학교, 전공, 취미를 표시해줘."
 
-| 모드      | 동작                                          | 예시                                |
-| --------- | --------------------------------------------- | ----------------------------------- |
-| **Ask**   | 질문에 답변 (코드 수정 안 함)                 | "이 함수가 뭘 하는 거야?"           |
-| **Edit**  | 선택한 코드만 수정                            | 코드 선택 → "TypeScript로 변환해줘" |
-| **Agent** | 여러 파일 탐색 + 코드 생성/수정 + 터미널 실행 | "게시글 CRUD API를 만들어줘"        |
+→ 파일 위치, 기술 스택, 구체적 요구사항이 명확하다.
 
-Agent Mode에서는 **컨텍스트 관리가 더욱 중요**하다. AI가 여러 파일을 동시에 수정하므로, copilot-instructions.md에 규칙이 명확히 정의되어 있어야 한다.
+### 🤖 실습: 블로그 소개 페이지 만들기
 
-> **Antigravity 사용**:
-> Antigravity의 Agent Panel은 기본적으로 Agent 모드로 동작한다. 여러 파일 탐색, 코드 생성/수정, 터미널 실행을 하나의 프롬프트로 처리할 수 있다.
+Copilot Chat(Agent 모드)에서 다음 프롬프트를 실행한다:
 
-### 2.5.2 Agent Skills: 특정 작업에 전문 규칙 자동 적용
+> "app/page.tsx를 블로그 소개 페이지로 수정해줘.
+> Tailwind CSS로 중앙에 흰색 카드(rounded-lg shadow)를 배치하고,
+> 이름(text-3xl font-bold), 학교, 전공, 취미를 표시해줘."
 
-**Agent Skills**는 copilot-instructions.md의 진화형이다. copilot-instructions.md가 "모든 상황에 적용되는 일반 규칙"이라면, Skills는 **"특정 키워드가 포함될 때만 자동 발동되는 전문 규칙"**이다.
+**검증** — AI가 생성한 코드에서 반드시 확인:
 
-**표 2.8** copilot-instructions.md vs Agent Skills
+| 확인 항목 | ✅ 올바른 | ❌ 틀린 |
+|-----------|----------|---------|
+| JSX 문법 | `className="..."` | `class="..."` |
+| import 경로 | `from 'next/navigation'` | `from 'next/router'` |
+| "use client" | Server Component는 제거 | 모든 파일에 자동 추가 |
 
-| 항목      | copilot-instructions.md           | Agent Skills                     |
-| --------- | --------------------------------- | -------------------------------- |
-| 위치      | `.github/copilot-instructions.md` | `.github/skills/스킬명/SKILL.md` |
-| 적용 시점 | 항상 (모든 프롬프트)              | 관련 키워드 포함 시 자동         |
-| 용도      | 프로젝트 전체 규칙                | 특정 작업 전문 지침              |
-| 난이도    | 마크다운 작성                     | 동일 (마크다운 작성)             |
+1. 본인 정보로 수정한다.
+2. `npm run dev` → [localhost:3000](http://localhost:3000/)에서 확인한다.
 
-#### 바이브 코딩으로 만들기
-
-> **Copilot 프롬프트**
->
-> ".github/skills/nextjs-rules/ 폴더를 만들고 SKILL.md 파일을 생성해줘.
->
-> 내용:
->
-> - App Router 전용, Pages Router 금지
-> - Server Component 기본, use client는 필요할 때만
-> - next/router 금지, next/navigation 사용
->
-> when 키워드: nextjs, app router, page, layout"
-
-Copilot이 `.github/skills/nextjs-rules/SKILL.md` 파일을 생성하고, Agent 모드에서 "새 페이지 만들어줘"라고 할 때 위 규칙이 **자동으로 적용**된다.
-
-> Skills는 Ch7(디자인 규칙)과 Ch12(에러 처리)에서 실전 예시를 다룬다. 지금은 **"마크다운 파일 하나로 AI의 행동을 제어할 수 있다"**는 개념만 익혀둔다.
-
-> **Antigravity 사용**:
-> Antigravity에서는 `.agent/skills/` 디렉토리에 스킬 파일을 작성한다. Copilot의 `.github/skills/`와 동일한 개념이며, 관련 키워드가 포함되면 자동으로 적용된다.
-
-### 2.5.3 참고 — MCP: 외부 도구 연결 (선택)
-
-> 이 절은 **참고 사항**이다. MCP 설정은 필수가 아니며, 필요한 학생만 활용한다.
-
-**MCP**(Model Context Protocol)는 Copilot에게 외부 도구를 연결하는 프로토콜이다. Skills가 "규칙을 알려주는 것"이라면, MCP는 **"도구를 쥐어주는 것"**이다.
-
-**표 2.9** 웹 개발에 유용한 MCP 서버
-
-| MCP 서버         | 용도                       |
-| ---------------- | -------------------------- |
-| **GitHub MCP**   | 리포지토리, 이슈, PR 관리  |
-| **Context7 MCP** | 최신 공식 문서 실시간 참조 |
-| **Vercel MCP**   | 배포, 프리뷰 URL 관리      |
-
-**등록 방법**: `Cmd+Shift+P` → `MCP: Add Server` → 목록에서 선택
-
-> **quota 주의**: 학생 Pro 계정은 월 300회 premium request 제한. MCP 도구 호출은 quota를 소모하므로 처음에는 **Skills만 사용**하는 것을 권장한다. 자세한 설정 방법은 부록 C 참고.
-
-> **Antigravity 사용**:
-> Antigravity에서도 MCP 서버를 동일하게 등록할 수 있다. `Cmd+Shift+P` → `MCP: Add Server`로 추가하고, Agent Panel에서 `@서버명`으로 멘션하여 사용한다.
+> AI가 틀린 부분을 발견하면, copilot-instructions.md의 Known AI Mistakes에 추가한다:
+> ".github/copilot-instructions.md의 Known AI Mistakes에 추가해줘: '...'"
 
 ---
 
-## 2.6 AI 사용 로그 작성법
+## 2.6 Agent Skills (참고)
 
-이 수업에서는 **AI 사용 로그**를 기록한다. 기말 프로젝트 필수 제출물이다.
+copilot-instructions.md가 "모든 상황의 일반 규칙"이라면, **Agent Skills**는 특정 키워드 포함 시 자동 발동되는 전문 규칙이다.
 
-기록 항목:
+| 항목 | copilot-instructions.md | Agent Skills |
+|------|------------------------|--------------|
+| 위치 | `.github/copilot-instructions.md` | `.github/skills/스킬명/SKILL.md` |
+| 적용 시점 | 항상 | 관련 키워드 포함 시 자동 |
+
+Skills는 Ch7(디자인 규칙)과 Ch12(에러 처리)에서 실전 예시를 다룬다.
+
+---
+
+## 2.7 AI 사용 로그
+
+이 수업에서는 AI 사용 로그를 기록한다 (기말 프로젝트 필수 제출물).
 
 ```text
 [프롬프트] Tailwind CSS로 반응형 네비게이션 바를 만들어줘
@@ -405,26 +243,49 @@ Copilot이 `.github/skills/nextjs-rules/SKILL.md` 파일을 생성하고, Agent 
 
 > 로그 템플릿은 부록 B를 참고한다.
 
+### 🤖 실습: AI 로그 작성 + 배포
+
+**① 로그 작성** — Copilot Chat(Agent 모드):
+
+> "ai-log.md 파일을 만들어줘. 오늘 사용한 프롬프트, AI가 틀린 부분, 해결 방법을 아래 형식으로 작성해줘.
+>
+> [프롬프트] (사용한 프롬프트)
+> [AI 실수] (발견한 실수)
+> [해결] (수정 방법)"
+
+실제 발견한 AI 실수를 반영하여 내용을 수정한다.
+
+**② 배포** — Copilot Chat(Agent 모드):
+
+> "터미널에서 git add, commit, push를 실행해줘. 커밋 메시지: 'Ch2: 블로그 소개 페이지'"
+
+Vercel 대시보드에서 배포 완료 확인 후, 배포 URL에서 페이지가 정상 동작하는지 확인한다.
+
 ---
 
-## 핵심 정리 + B회차 과제 스펙
+## AI 도구별 참조표
 
-### 이번 시간 핵심 3가지
+| 항목 | GitHub Copilot | Antigravity | Claude Code |
+|------|---------------|-------------|-------------|
+| 파일 참조 | `#file:app/page.tsx` | `@file` 또는 자동 인식 | `@파일명` 또는 자동 인식 |
+| 터미널 실행 | Agent 모드에서 자동 | Agent Panel에서 자동 | 자동 실행 |
+| 프로젝트 규칙 | `.github/copilot-instructions.md` | `AGENTS.md` | `CLAUDE.md` |
+| 버전 명시 | copilot-instructions.md에 기록 | AGENTS.md에 기록 | CLAUDE.md에 기록 |
+| MCP | `.vscode/mcp.json` 설정 | MCP 내장 (`@멘션`) | `.mcp.json` 또는 내장 |
+| Agent 모드 | Chat 상단에서 Agent 선택 | Agent Panel (`Cmd+Shift+I`) 기본 | 기본 동작 |
 
-1. **바이브코딩**은 설명 → 생성 → 검증 → 반복이다. 핵심은 **검증**이다
-2. AI의 **3대 한계**: 버전 불일치, 컨텍스트 소실, 환각 — **copilot-instructions.md**가 80%를 해결한다
-3. **Agent Mode + Skills + MCP**: 마크다운 파일로 AI의 행동을 제어하고, 외부 도구를 연결할 수 있다
+> **Antigravity 사용자**: Copilot 승인 대기 중이라면 [antigravity.google](https://antigravity.google)에서 다운로드. VS Code 포크 IDE로, `.edu` 이메일이면 Starter 플랜 무료. 자동완성, Agent Panel, MCP 기본 내장.
 
-### B회차 과제 스펙
+---
 
-**Copilot 설정 + 블로그 소개 페이지 생성 + 배포**:
+## 제출 안내 (Google Classroom)
 
-1. GitHub Copilot / Copilot Chat 확장 설치 완료
-2. `.github/copilot-instructions.md` 작성 완료
-3. Copilot Chat을 사용하여 **블로그 소개 페이지** 생성
-4. git push → Vercel 배포
-5. AI 사용 로그 작성
+```text
+① 배포 URL
+   예: https://내프로젝트.vercel.app
 
-B회차에서는 Ch1에서 만든 블로그 프로젝트를 이어서 사용한다.
+② AI가 틀린 부분 1개 + 수정 방법
+   예: "next/router를 써서 next/navigation으로 변경"
+```
 
 ---
