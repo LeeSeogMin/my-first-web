@@ -27,9 +27,9 @@
 
 이번 실습부터 MCP와 Skills를 설정한다. App Router 라우팅이 본격적으로 시작되므로, AI가 최신 문서를 참조하고 규칙을 자동 점검하도록 한다.
 
-> **Gemini CLI / Claude Code 사용자**: MCP와 Skills는 VS Code Copilot 전용 기능이다. 대안으로:
-> - **MCP 대안**: Context7은 Gemini CLI에서도 사용 가능 (별도 설정 필요). Claude Code는 `.mcp.json` 파일로 동일하게 설정한다.
-> - **Skills 대안**: `.github/skills/` 폴더에 SKILL.md 파일을 동일하게 생성한다. Gemini CLI는 `GEMINI.md` 또는 `AGENTS.md`에 규칙을 직접 추가하고, Claude Code는 `CLAUDE.md`에 추가한다.
+> **Antigravity / Claude Code 사용자**: MCP와 Skills는 VS Code Copilot 전용 기능이 아니다. 대안으로:
+> - **MCP**: Antigravity는 `Cmd+Shift+P` → `MCP: Add Server`로 동일하게 설정한다. Claude Code는 `.mcp.json` 파일로 설정한다.
+> - **Skills**: Antigravity는 `.agent/skills/` 디렉토리에 스킬 파일을 작성하고, `GEMINI.md`에 규칙을 추가한다. Claude Code는 `CLAUDE.md`에 추가한다.
 > - **프롬프트에 규칙 직접 포함**: MCP/Skills가 없어도, 프롬프트에 규칙을 직접 적으면 동일한 효과를 얻는다. 예: "App Router만 사용, next/router 금지, params는 await 필수"
 
 **① Context7 MCP 설치** — Copilot Agent 모드에서 아래 프롬프트를 입력한다:
