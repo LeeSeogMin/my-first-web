@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "supabase-mcp-server@latest", "--read-only"],
+      "env": {
+        "SUPABASE_URL": "${input:supabaseUrl}",
+        "SUPABASE_SERVICE_ROLE_KEY": "${input:supabaseServiceRoleKey}"
+      }
+    }
+  }
+}
