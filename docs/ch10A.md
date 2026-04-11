@@ -614,6 +614,24 @@ todo.md에서 "블로그 글 목록/상세/작성(CRUD)" 항목을 체크하고 
 - `nextjs-basic-check`: 수정/삭제 UI가 App Router 구조와 컴포넌트 경계에 맞는지 확인한다.
 - 권장 타이밍: CRUD 함수 구현 직후.
 
+### Context7 활용 가이드
+
+Supabase 쿼리 체이닝 방식(`eq`, `ilike`, `order`, `range`)과 에러 처리 패턴이 버전마다 다르다. 쿼리 작성 전에 확인한다.
+
+**언제 쓰는가**: select/insert/update/delete 쿼리 작성 전, 필터·정렬·페이지네이션 구현 전
+
+```
+use context7. @supabase/supabase-js 현재 버전에서 select, insert, update, delete
+쿼리의 올바른 체이닝 방법과 { data, error } 처리 패턴을 알려줘.
+```
+
+```
+use context7. @supabase/supabase-js ilike 필터와 order, range를 함께 쓰는
+현재 권장 방법을 알려줘.
+```
+
+> **주의**: Copilot이 구버전 `.then()` 기반 쿼리를 만들 수 있다. Context7로 확인 후 `await` + 구조분해 `{ data, error }` 패턴인지 점검한다.
+
 B회차에서는 Ch9에서 만든 블로그 프로젝트를 이어서 사용한다.
 
 ---
