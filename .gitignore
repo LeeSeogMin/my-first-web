@@ -3,6 +3,7 @@ node_modules/
 out/
 dist/
 .vercel/
+exam/
 .env
 .env.local
 .env.*.local
