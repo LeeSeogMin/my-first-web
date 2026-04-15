@@ -1,6 +1,6 @@
 # Chapter 9. Supabase Authentication — A회차: 강의
 
-> **미션**: 내 블로그(`my-blog`)에 이메일/비밀번호 로그인을 연결한다
+> **미션**: 내 블로그(`my-first-web`)에 이메일/비밀번호 로그인을 연결한다
 
 ---
 

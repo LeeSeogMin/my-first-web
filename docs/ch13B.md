@@ -133,7 +133,7 @@ Next.js + Supabase로 만든 블로그 — 댓글, 태그, 검색 기능 포함
 
 ## 배포 URL
 
-https://my-blog.vercel.app
+https://my-first-web.vercel.app
 
 ## 주요 기능
 
@@ -189,10 +189,10 @@ Google Classroom의 "Ch13 과제"에 아래 세 항목을 제출한다:
 
 ```
 ① 배포 URL
-   예: https://my-blog.vercel.app
+   예: https://my-first-web.vercel.app
 
 ② GitHub 저장소 URL
-   예: https://github.com/내아이디/my-blog
+   예: https://github.com/내아이디/my-first-web
    (ARCHITECTURE.md, README.md, AI_LOG.md 포함)
 
 ③ AI가 틀린 부분 1개

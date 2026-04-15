@@ -157,7 +157,7 @@ Google Classroom의 "Ch7 과제"에 아래 두 항목을 제출한다:
 
 ```
 ① GitHub 저장소 URL
-   예: https://github.com/내아이디/my-blog
+   예: https://github.com/내아이디/my-first-web
    (ARCHITECTURE.md, copilot-instructions.md, context.md, todo.md 포함)
 
 ② AI가 틀린 부분 1개

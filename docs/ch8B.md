@@ -96,7 +96,7 @@ Supabase를 Next.js 프로젝트에 연동하고, 데이터를 읽어 화면에 
 npx supabase orgs list
 
 # 프로젝트 생성
-npx supabase projects create my-blog \
+npx supabase projects create my-first-web \
   --org-id "조직ID" \
   --db-password "DB비밀번호" \
   --region ap-northeast-1

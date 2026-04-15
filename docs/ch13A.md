@@ -19,7 +19,7 @@
 ## Copilot 프롬프트 (복사/붙여넣기)
 
 ```text
-너는 GitHub Copilot Chat이고, 내 `my-blog` 프로젝트에 확장 기능을 추가하는 걸 도와주는 PM+테크리드야.
+너는 GitHub Copilot Chat이고, 내 `my-first-web` 프로젝트에 확장 기능을 추가하는 걸 도와주는 PM+테크리드야.
 기술 스택: Next.js(App Router) + Supabase + Tailwind + shadcn/ui.
 목표: 1주(또는 수업 기간) 안에 댓글, 태그, 검색 기능을 추가하고 배포를 완성한다.
 

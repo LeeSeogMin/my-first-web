@@ -45,7 +45,7 @@ CLI가 Supabase 계정에 접근하려면 **Access Token**이 필요하다.
 
 1. https://supabase.com/dashboard/account/tokens 접속
 2. **"Generate new token"** 클릭
-3. 이름 입력 (예: `my-blog-cli`)
+3. 이름 입력 (예: `my-first-web-cli`)
 4. 생성된 토큰을 복사한다
 
 > **토큰 형식**: `sbp_` + 영숫자 (예: `sbp_1234abcd5678efgh`)
@@ -86,7 +86,7 @@ npx supabase orgs list
 ### D.3.2 프로젝트 생성
 
 ```bash
-npx supabase projects create my-blog \
+npx supabase projects create my-first-web \
   --org-id "조직ID" \
   --db-password "DB비밀번호" \
   --region ap-northeast-1
